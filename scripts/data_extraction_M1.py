@@ -121,4 +121,4 @@ if __name__ == "__main__":
 expect Exception as e:
 print("Error:", e)
 # I used a while loop here insted of for loop because
-# th number of lines per question can vary slightly
+# the number of lines per question can vary slightly
