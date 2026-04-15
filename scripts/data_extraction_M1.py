@@ -56,7 +56,7 @@ def extract_answers_sequence(file_path):
 
             # if we didn’t find exactly 4 options, something is wrong
             if len(options) != 4:
-                raise ValueError(f"Question formatting error near line {i}")
+                raise ValueError(f"Question formatting error near line {i + 1}")
 
             selected = 0  # default = unanswered
 
@@ -118,19 +118,30 @@ def write_answers_sequence(answers, n, destination_path):
 if __name__ == "__main__":
     try:
         # example input file
-        input_file = "data/a1.txt"
+      project_folder = os.path.dirname(os.path.abspath(__file__))
+      data_folder = os.path.join(project_folder, "data")
+      output_folder = os.path.join(project_folder, "output")
 
-        # extract answers
-        answers = extract_answers_sequence(input_file)
+      processed_count = 0
+      for n in [1, 64]:
+          input_file = os.path.join(data_folder, f"a{n}.txt")
 
-        # quick check
-        print("Number of answers:", len(answers))  # should be 100
-        print("First 10 answers:", answers[:10])
+          if not os.path.isfile(input_file):
+              print(f'Skipping missing file: a{n}.txt")
+              continue
 
-        # save results
-        write_answers_sequence(answers, 1, "output")
+          answers = extract_answers_sequence(input_file)
+          write_answers_sequence(answers, n, output_folder)
 
-        print("File saved successfully!")
+          print(f"Processed respondent {n}")
+          processed_count += 1
+
+        print(f"Finished processing {processed_count} file(s).")
+
+    except Exception as e:
+        print("Error:", e)
+
+       
 
     except Exception as e:
         print("Error:", e)
