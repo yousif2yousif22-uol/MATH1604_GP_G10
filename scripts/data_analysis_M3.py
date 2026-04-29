@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from data_extraction_M1 import extract_answers_sequence
+import re
 
 #This function works out the mean answer for each of the 100 questions
 def generate_means_sequence(collated_answers_path):
@@ -9,7 +10,11 @@ def generate_means_sequence(collated_answers_path):
         text = f.read()
 
     # Split into respondents
-    respondents = [r.strip() for r in text.split("*") if r.strip()]
+    respondents = [
+    r.strip()
+    for r in re.split(r"^\s*\*\s*$", text, flags=re.MULTILINE)
+    if r.strip()
+]
 
     all_sequences = []
   
@@ -43,7 +48,11 @@ def visualize_data(collated_answers_path, n):
     with open(collated_answers_path, "r", encoding="utf-8") as f:
         text = f.read()
 
-    respondents = [r.strip() for r in text.split("*") if r.strip()]
+    respondents = [
+    r.strip()
+    for r in re.split(r"^\s*\*\s*$", text, flags=re.MULTILINE)
+    if r.strip()
+]
 
     all_sequences = []
 
