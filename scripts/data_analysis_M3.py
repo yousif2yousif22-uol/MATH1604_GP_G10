@@ -12,7 +12,7 @@ def generate_means_sequence(collated_answers_path):
     # Split into respondents
     respondents = [
     r.strip()
-    for r in re.split(r"^\s*\*\s*$", text, flags=re.MULTILINE)
+    for r in re.split(r"\n\s*\*\s*\n", text)
     if r.strip()
 ]
 
@@ -50,7 +50,7 @@ def visualize_data(collated_answers_path, n):
 
     respondents = [
     r.strip()
-    for r in re.split(r"^\s*\*\s*$", text, flags=re.MULTILINE)
+    for r in re.split(r"\n\s*\*\s*\n", text)
     if r.strip()
 ]
 
