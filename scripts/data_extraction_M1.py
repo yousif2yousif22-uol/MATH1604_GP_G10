@@ -123,11 +123,12 @@ if __name__ == "__main__":
       output_folder = os.path.join(project_folder, "output")
 
       processed_count = 0
+        
       for n in [1, 64]:
           input_file = os.path.join(data_folder, f"a{n}.txt")
 
           if not os.path.isfile(input_file):
-              print(f'Skipping missing file: a{n}.txt")
+              print(f"Skipping missing file: a{n}.txt")
               continue
 
           answers = extract_answers_sequence(input_file)
@@ -137,11 +138,6 @@ if __name__ == "__main__":
           processed_count += 1
 
         print(f"Finished processing {processed_count} file(s).")
-
-    except Exception as e:
-        print("Error:", e)
-
-       
 
     except Exception as e:
         print("Error:", e)
