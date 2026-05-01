@@ -4,7 +4,13 @@ import re
 
 #This function works out the mean answer for each of the 100 questions
 def generate_means_sequence(collated_answers_path):
-
+    """
+    This function works out the mean answer value for each question across all the respondents.
+    It reads the collated answers file and each respondents answers are parsed using the function from the M1 module
+    For each of the 100 questions, this function calculates the mean of the selected answers, excluding unanswered questions.
+    It returns a list of floats, with length 100 where each element represents the mean answer value for each question.
+    It will also return an error if the collated answers file cannot be found or if an error occurs while reading the file
+    """
     # Opens the file for the collated answers
     with open(collated_answers_path, "r", encoding="utf-8") as f:
         text = f.read()
@@ -43,6 +49,14 @@ def generate_means_sequence(collated_answers_path):
 
 
 def visualize_data(collated_answers_path, n):
+    """
+    This function visualises the data from the collated answers file.
+    It reads the file and generates a plot based on the selected mode:
+    1. if n ==1, it displays a scatter plot of the mean answer for each question
+    2. if n ==2, it displays a line plot of all respondent answer sequences on the same axes
+    3. if n is not 1 or 2, it prints an error message
+    The function depends on the generate_means_sequence (for n ==1) and extract_answers_sequence from M1.
+    """
 
     # Read file
     with open(collated_answers_path, "r", encoding="utf-8") as f:
