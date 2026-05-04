@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from data_extraction_M1 import extract_answers_sequence
+from scripts.data_extraction_M1 import extract_answers_sequence
 import re
 
 #This function works out the mean answer for each of the 100 questions
