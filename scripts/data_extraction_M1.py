@@ -117,29 +117,29 @@ def write_answers_sequence(answers, n, destination_path):
 # simple test (only runs if this file is executed directly)
 if __name__ == "__main__":
     try:
-      # example input file
-      project_folder = os.path.dirname(os.path.abspath(__file__))
-      data_folder = os.path.join(project_folder, "data")
-      output_folder = os.path.join(project_folder, "output")
+        # example input file
+        project_folder = os.path.dirname(os.path.abspath(__file__))
+        data_folder = os.path.join(project_folder, "data")
+        output_folder = os.path.join(project_folder, "output")
 
-      processed_count = 0
+        processed_count = 0
         
-      for n in [1, 64]:
-          input_file = os.path.join(data_folder, f"a{n}.txt")
+        for n in [1, 64]:
+            input_file = os.path.join(data_folder, f"a{n}.txt")
 
-          if not os.path.isfile(input_file):
-              print(f"Skipping missing file: a{n}.txt")
-              continue
+            if not os.path.isfile(input_file):
+                print(f"Skipping missing file: a{n}.txt")
+                continue
 
-          answers = extract_answers_sequence(input_file)
-          write_answers_sequence(answers, n, output_folder)
-          print(f"Processed respondent {n}")
-          processed_count += 1
+            answers = extract_answers_sequence(input_file)
+            write_answers_sequence(answers, n, output_folder)
+            print(f"Processed respondent {n}")
+            processed_count += 1
           
-      print(f"Finished processing {processed_count} file(s).")
+        print(f"Finished processing {processed_count} file(s).")
 
-  except Exception as e:
-      print("Error:", e)
+    except Exception as e:
+        print("Error:", e)
 
     # I used a while loop here instead of a for loop because
     # the number of lines per question can vary slightly
